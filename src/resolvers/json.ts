@@ -1,12 +1,12 @@
 import type { Resolver } from '../types'
-import { parse } from 'json5'
+import JSON5 from 'json5'
 import { existsSync, readFileSync } from 'node:fs'
 import { assert } from '@awuxtron/utils'
 
 export interface JsonOptions {
     path: string
     required?: boolean
-    reviver?: Parameters<typeof parse>[1]
+    reviver?: Parameters<typeof JSON5.parse>[1]
 }
 
 export const json = (options: JsonOptions): Resolver => {
@@ -24,7 +24,7 @@ export const json = (options: JsonOptions): Resolver => {
         const content = readFileSync(path, { encoding: 'utf8' })
 
         try {
-            return parse(content, reviver)
+            return JSON5.parse(content, reviver)
         } catch {
             throw new Error(`The config file ${path} is not a valid JSON/JSON5 file`)
         }
