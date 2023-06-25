@@ -1,4 +1,4 @@
-import type { AnyZodObject, infer as ZodInfer } from 'zod'
+import type { AnyZodObject, TypeOf } from 'zod'
 import { Config } from './config'
 import type { DefineConfigOptions } from './types'
 import { argv, env, json } from './resolvers'
@@ -7,7 +7,7 @@ export * from './config'
 export * from './resolvers'
 export * from './types'
 
-export function defineConfig<S extends AnyZodObject>(schema: S, options: DefineConfigOptions = {}): ZodInfer<S> {
+export function defineConfig<S extends AnyZodObject>(schema: S, options: DefineConfigOptions = {}): TypeOf<S> {
     const config = new Config(schema)
 
     if (options.argv !== false) {

@@ -1,4 +1,4 @@
-import type { AnyZodObject, infer as ZodInfer } from 'zod'
+import type { AnyZodObject, TypeOf } from 'zod'
 import type { Resolver } from './types'
 
 export class Config<S extends AnyZodObject = AnyZodObject> {
@@ -22,7 +22,7 @@ export class Config<S extends AnyZodObject = AnyZodObject> {
         return config
     }
 
-    public parse(): ZodInfer<S> {
+    public parse(): TypeOf<S> {
         return this.schema.parse(this.resolve())
     }
 }
