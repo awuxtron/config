@@ -22,5 +22,9 @@ export function defineConfig<S extends AnyZodObject>(schema: S, options: DefineC
         config.addResolver(json(options.json))
     }
 
+    if (options.object) {
+        config.addResolver(() => options.object ?? {})
+    }
+
     return config.parse()
 }

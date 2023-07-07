@@ -1,5 +1,6 @@
 import type { AnyZodObject } from 'zod'
 import type { ArgvOptions, EnvOptions, JsonOptions } from './resolvers'
+import type { GenericObject } from '@awuxtron/utils'
 
 export type Resolver = (schema: AnyZodObject) => Record<string, any>
 
@@ -11,4 +12,5 @@ export interface DefineConfigOptions {
     argv?: ArgvOptions | boolean
     env?: EnvOptions | boolean
     json?: JsonOptions | false
+    object?: GenericObject
 }
